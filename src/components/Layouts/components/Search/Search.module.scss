@@ -1,0 +1,141 @@
+.wrapper {
+    background-color: var(--main-color-darker);
+    min-height: 170px;
+    display: flex;
+    width: 100%;
+
+    .find-job-button {
+        background-color: var(--main-color-most-dark);
+        color: aliceblue;
+        border: none;
+    }
+}
+
+.search-bar {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-width: 40%;
+}
+
+.search-address {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    min-width: 30%;
+    justify-content: flex-start;
+}
+
+.address {
+    height: 36px;
+    margin-bottom: 10px;
+}
+
+.search-time-salary {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    min-width: 30%;
+    justify-content: space-around;
+}
+
+.input-content {
+    min-height: 36px;
+    margin-bottom: 20px;
+    padding: 0 10px;
+    &::placeholder {
+        opacity: 0.5;
+        font-style: italic;
+        padding-left: 10px;
+    }
+}
+
+.search-title {
+    color: var(--white);
+    font: var(--font-family);
+    text-align: left;
+    font-style: italic;
+}
+
+.address-item {
+    background-color: aqua;
+}
+
+.price-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.time-title {
+    color: var(--white);
+    padding-right: 20px;
+    font-style: italic;
+    text-align: left;
+}
+.time-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.time-choose {
+    display: flex;
+    input {
+        width: 100%;
+        text-align: center;
+        height: 36px;
+        margin-bottom: 10px;
+    }
+}
+
+.price-title {
+    color: var(--white);
+    padding-right: 20px;
+    font-style: italic;
+    text-align: left;
+}
+
+.price-slider {
+    color: var(--white) !important;
+}
+
+.price-tooltip {
+    font-size: 20px;
+}
+
+.min-max-display {
+    display: flex;
+}
+
+.min-display {
+    display: flex;
+    max-width: 50%;
+}
+
+.max-display {
+    display: flex;
+    max-width: 50%;
+}
+.min-label {
+    font-size: 20px;
+    color: var(--white);
+}
+
+.min-value {
+    width: 100%;
+    margin: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.max-label {
+    font-size: 20px;
+    color: var(--white);
+}
+
+.max-value {
+    width: 100%;
+    margin: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+}

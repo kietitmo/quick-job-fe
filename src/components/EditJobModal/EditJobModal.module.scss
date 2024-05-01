@@ -1,0 +1,98 @@
+// EditJobModal.module.scss
+
+// Biến môi trường
+$modal-background-color: rgba(0, 0, 0, 0.5); // Màu nền modal với độ trong suốt
+
+// Lớp chính
+.edit-job-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    background-color: $modal-background-color; // Sử dụng màu nền có độ trong suốt
+    display: flex;
+}
+
+// Modal nội dung
+.edit-job-form {
+    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 2rem;
+    background-color: #fff;
+    div {
+        width: calc(50% - 10px); // Đặt chiều rộng của mỗi trường là 50% và trừ đi khoảng cách giữa chúng (10px)
+        margin-bottom: 10px;
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type='text'],
+        input[type='number'],
+        input[type='datetime-local'],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+
+            &:focus {
+                outline: none;
+                border-color: #007bff;
+            }
+        }
+
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M8.59 16.34L12 12.93l3.41 3.41L17 15.75l-5-5-5 5z"/><path d="M0-.25h24v24H0z" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 30px;
+        }
+    }
+
+    button[type='submit'] {
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+        color: #fff;
+        background-color: #003063;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #0056b3;
+        }
+    }
+    .close-button {
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+        color: #fff;
+        background-color: #a30000;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 5px;
+        &:hover {
+            background-color: #cf0000;
+        }
+    }
+}

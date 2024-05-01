@@ -1,0 +1,75 @@
+.modalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Một lớp mờ đen khi modal hiển thị */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999; /* Đảm bảo modal hiển thị trên cùng */
+    // visibility: hidden;
+    // opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease; /* Hiệu ứng transition khi hiển thị */
+
+    &.active {
+        visibility: visible;
+        opacity: 1;
+    }
+    overflow: auto; /* Thêm thanh cuộn khi cần thiết */
+}
+
+.modalContent {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 80%;
+    text-align: start;
+    overflow-y: auto; /* Cho phép cuộn nội dung theo chiều dọc khi nội dung vượt ra ngoài */
+    max-height: 80vh;
+}
+
+.review {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: rgb(184, 184, 184);
+    button {
+        margin: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: var(--primary);
+        color: var(--white);
+        cursor: pointer;
+    }
+
+    button:hover {
+        opacity: 80%;
+    }
+}
+
+.avg-rating {
+    padding: 10px;
+    background-color: rgb(150, 222, 255);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.close-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #a30000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 5px;
+    &:hover {
+        background-color: #cf0000;
+    }
+}

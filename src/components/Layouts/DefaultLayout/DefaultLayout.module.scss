@@ -1,0 +1,20 @@
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    width: var(--default-layout-width);
+    background-color: rgb(235 235 235);
+    align-items: flex-start;
+}
+
+.content {
+    min-width: 100%;
+    // display: flex;
+    justify-content: center;
+    align-items: center;
+}

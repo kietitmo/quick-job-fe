@@ -1,0 +1,129 @@
+.post {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 15px;
+    max-width: 100%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    max-height: 70px;
+}
+
+.post-title {
+    font-weight: bold;
+    font-size: 2rem;
+    max-width: 80%;
+    text-align: left;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.author {
+    display: flex;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name {
+    text-align: end;
+    font-weight: bold;
+    margin: 0;
+    cursor: pointer;
+}
+
+.post-time {
+    text-align: end;
+    font-size: 12px;
+    color: #777;
+    margin: 0;
+}
+
+.post-body {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.show-more,
+.show-less {
+    background-color: transparent;
+    border: none;
+    color: var(--primary);
+    cursor: pointer;
+    font-weight: bold;
+    font-style: italic;
+    margin: 0 10px;
+}
+
+.post-info {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    overflow: hidden;
+
+    .info {
+        margin-bottom: 10px;
+    }
+
+    .info-icon {
+        margin-right: 5px;
+    }
+}
+
+.post-media {
+    width: 50%;
+}
+
+.address {
+    font-weight: bold;
+}
+
+.no_image {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    max-width: 100%;
+    border-radius: 20px;
+}
+
+.post-buttons {
+    display: flex;
+    margin-top: auto;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.applied-announcement {
+    background-color: brown;
+    color: #ffffff;
+    border-color: brown;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    padding: 9px 16px;
+    border-radius: 4px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    font-family: var(--font-family);
+    border: 1px solid transparent;
+    user-select: none;
+    margin-left: 8px;
+}

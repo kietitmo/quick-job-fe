@@ -1,0 +1,53 @@
+.image-slider {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    width: 550px;
+    height: 380px;
+    padding: 15px;
+    border-radius: 25px;
+}
+
+.left {
+    position: absolute;
+    left: 2rem;
+    font-size: 4rem;
+    top: 45%;
+    color: rgb(255, 255, 255);
+    z-index: 5;
+    cursor: pointer;
+    user-select: none;
+    :hover {
+        color: rgb(228, 228, 228);
+    }
+}
+
+.right {
+    position: absolute;
+    right: 2rem;
+    font-size: 4rem;
+    top: 45%;
+    color: rgb(255, 255, 255);
+    z-index: 5;
+    cursor: pointer;
+    user-select: none;
+    :hover {
+        color: rgb(228, 228, 228);
+    }
+}
+
+.currentSlide {
+    transition-duration: 0.5s ease;
+    opacity: 0;
+}
+
+.currentSlide.active {
+    opacity: 1;
+    transition-duration: 0.5s;
+    transform: scale(1.2);
+}

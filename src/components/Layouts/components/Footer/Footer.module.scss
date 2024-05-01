@@ -1,0 +1,24 @@
+.footer {
+    background-color: var(--primary);
+    width: 100%;
+    margin-top: auto;
+    padding-bottom: 20px;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.footer-logo {
+    margin-top: 10px;
+    color: var(--white);
+    font-size: 30px;
+    text-align: left;
+    padding: 8px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.footer-info {
+    font-style: italic;
+}

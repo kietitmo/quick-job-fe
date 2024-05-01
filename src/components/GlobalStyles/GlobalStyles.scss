@@ -1,0 +1,36 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+:root {
+    --default-layout-header-height: 60px;
+    --default-layout-width: 1150px;
+    --main-color: #1d44b8;
+    --main-color-darker: #142f80;
+    --main-color-most-dark: #0b1b49;
+
+    --primary: #0b1b49;
+    --hover-primary: #142f80;
+    --black: #000;
+    --white: #fff;
+    --text-color: #161823;
+
+    --font-family: 'ProximaNova', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    background-color: #fff;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-rendering: optimizespeed;
+}
