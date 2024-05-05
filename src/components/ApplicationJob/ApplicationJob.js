@@ -58,11 +58,6 @@ const ApplicationJob = () => {
         }
     };
 
-    const handleChat = async () => {
-        try {
-        } catch (error) {}
-    };
-
     return (
         <div className={cx('job-posted')}>
             <h3>Your applied jobs:</h3>
@@ -97,20 +92,12 @@ const ApplicationJob = () => {
                             <td>{application.job.status}</td>
                             <td>
                                 {application.status !== 'COMPLETED' ? (
-                                    <>
-                                        <button
-                                            className={cx('button-chat')}
-                                            onClick={() => handleChat(application.id)}
-                                        >
-                                            Chat
-                                        </button>
-                                        <button
-                                            className={cx('button-delete')}
-                                            onClick={() => handleDeleteApplication(application.id)}
-                                        >
-                                            Cancel
-                                        </button>
-                                    </>
+                                    <button
+                                        className={cx('button-delete')}
+                                        onClick={() => handleDeleteApplication(application.id)}
+                                    >
+                                        Cancel
+                                    </button>
                                 ) : (
                                     'COMPLETED'
                                 )}

@@ -137,15 +137,6 @@ function LoginForm() {
                 />
             </div>
 
-            <div className={cx('remember-me')}>
-                <div className={cx('checkbox')}>
-                    <input type="checkbox" className={cx('checkbox-input')} />
-                    <label className={cx('checkbox-label')} htmlFor="customCheck1">
-                        Remember me
-                    </label>
-                </div>
-            </div>
-
             <Button primary className={cx('summit-button')} type="submit">
                 Submit
             </Button>

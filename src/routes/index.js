@@ -11,8 +11,8 @@ import ResetPassword from '~/pages/ResetPassword';
 import ForbiddenPage from '~/pages/ForbiddenPage';
 import Dashboard from '~/pages/Dashboard';
 import SearchResult from '~/pages/SearchResult';
-import Chat from '~/pages/Chat';
 import NoHeader from '~/components/Layouts/NoHeader';
+import ChangingPasssword from '~/pages/ChangingPassword';
 const publicRoutes = [
     {
         path: config.routes.home,
@@ -70,8 +70,8 @@ const privateRoutes = [
         allowedRoles: [roles.user, roles.admin],
     },
     {
-        path: config.routes.chat,
-        component: Chat,
+        path: config.routes.changingPassword,
+        component: ChangingPasssword,
         layout: HeaderOnly,
         allowedRoles: [roles.user, roles.admin],
     },

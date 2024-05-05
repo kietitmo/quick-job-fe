@@ -11,6 +11,7 @@ const routes = {
     dashboard: '/dashboard',
     searchResult: '/searchResult',
     chat: '/chat',
+    changingPassword: '/changingPassword',
 };
 
 export default routes;

@@ -1,7 +1,7 @@
-import classNames from 'classnames/bind';
-import styles from './Header.module.scss';
-import Button from '../../../Button';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames/bind';
 import {
     faEllipsisVertical,
     faPenToSquare,
@@ -9,28 +9,43 @@ import {
     faUser,
     faTableColumns,
 } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
-import routesConfig from '~/config/routes';
+import Button from '../../../Button';
 import Menu from '~/components/Popper/Menu';
 import config from '~/config';
-import useAuth from '~/helper/auth/hooks/useAuth';
-import { useEffect } from 'react';
+import routesConfig from '~/config/routes';
 import requestApi from '~/api/httpRequest';
+import useAuth from '~/helper/auth/hooks/useAuth';
+import styles from './Header.module.scss';
 
 const cx = classNames.bind(styles);
 
 function Header() {
     const { auth, setAuth } = useAuth();
-    const storedAuth = JSON.parse(localStorage.getItem('auth'));
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const auth = JSON.parse(localStorage.getItem('auth'));
-        if (auth) {
-            setAuth(auth);
+        const storedAuth = JSON.parse(localStorage.getItem('auth'));
+        if (storedAuth) {
+            setAuth(storedAuth);
         }
     }, [setAuth]);
 
-    const onHandleLogout = async () => {
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await requestApi(`/users/${auth.userId}`, 'GET');
+                setUser(response.data);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        };
+
+        if (auth.userId) {
+            fetchUserData();
+        }
+    }, [auth.userId]);
+
+    const handleLogout = async () => {
         await requestApi('/auth/logout', 'GET');
         localStorage.removeItem('auth');
         setAuth({});
@@ -38,20 +53,12 @@ function Header() {
     };
 
     const userMenu = [
-        {
-            icon: <FontAwesomeIcon icon={faUser} />,
-            title: 'View profile',
-            to: config.routes.profile,
-        },
-        {
-            icon: <FontAwesomeIcon icon={faTableColumns} />,
-            title: 'Dashboard',
-            to: config.routes.dashboard,
-        },
+        { icon: <FontAwesomeIcon icon={faUser} />, title: 'View profile', to: config.routes.profile },
+        { icon: <FontAwesomeIcon icon={faTableColumns} />, title: 'Dashboard', to: config.routes.dashboard },
         {
             icon: <FontAwesomeIcon icon={faSignOut} />,
             title: 'Log out',
-            onClick: onHandleLogout,
+            onClick: handleLogout,
             to: config.routes.login,
             separate: true,
         },
@@ -63,29 +70,25 @@ function Header() {
                 <Link to={routesConfig.home} className={cx('header-logo')}>
                     <span>Quick-JOB</span>
                 </Link>
-                {storedAuth ? (
+                {user ? (
                     <div className={cx('user-profile')}>
                         <Button small outline to={routesConfig.createJob} className={cx('create-job-btn')}>
                             <FontAwesomeIcon icon={faPenToSquare} />
                         </Button>
                         <Link to={routesConfig.profile} className={cx('user-info')}>
-                            <div className={cx('full-name')}>{auth.fullName}</div>
-                            <div className={cx('username')}>{auth.username}</div>
+                            <div className={cx('full-name')}>{user.fullName}</div>
+                            <div className={cx('username')}>{user.username}</div>
                         </Link>
                         <Link to={routesConfig.profile}>
-                            {auth.avatarUrl ? (
-                                <img
-                                    src={process.env.REACT_APP_BASE_SERVER_URL + auth.avatarUrl}
-                                    alt={auth.fullName}
-                                    className={cx('user-avatar')}
-                                />
-                            ) : (
-                                <img
-                                    className={cx('user-avatar')}
-                                    src="/photos/default-avatar.png"
-                                    alt="default-avatar"
-                                />
-                            )}
+                            <img
+                                src={
+                                    user.avatarUrl
+                                        ? `${process.env.REACT_APP_BASE_SERVER_URL}${user.avatarUrl}`
+                                        : '/photos/default-avatar.png'
+                                }
+                                alt={user.fullName}
+                                className={cx('user-avatar')}
+                            />
                         </Link>
                         <Menu items={userMenu}>
                             <button className={cx('more-btn')}>

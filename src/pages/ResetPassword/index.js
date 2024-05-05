@@ -1,7 +1,7 @@
-import ResetPassordForm from '~/components/ResetPassordForm/ResetPassordForm';
+import ResetPasswordForm from '~/components/ResetPasswordForm/ResetPasswordForm';
 
 function ResetPassword() {
-    return <ResetPassordForm />;
+    return <ResetPasswordForm />;
 }
 
 export default ResetPassword;

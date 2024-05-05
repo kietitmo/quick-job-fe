@@ -10,6 +10,8 @@ import {
     faPerson,
     faLayerGroup,
     faSignalPerfect,
+    faEnvelope,
+    faPhoneVolume,
 } from '@fortawesome/free-solid-svg-icons';
 import Button from '../Button';
 import ImageSlider from '../ImageSlider';
@@ -24,6 +26,7 @@ const Post = (props) => {
     const [applied, setApplied] = useState(false);
     const [applicationId, setApplicationId] = useState(null);
     const [selectedCreator, setSelectedCreator] = useState(null); // State for selected job
+    const [contact, setContact] = useState(false);
 
     const navigate = useNavigate();
     const handleSelectCreator = (userId) => {
@@ -87,12 +90,7 @@ const Post = (props) => {
     };
 
     const handleContact = () => {
-        if (auth && auth.tokens) {
-            console.log('AUTH CONTACT');
-            navigate('/chat');
-        } else {
-            navigate('/login');
-        }
+        setContact(!contact);
     };
     return (
         <div className={cx('post')}>
@@ -136,7 +134,7 @@ const Post = (props) => {
                     </div>
                     <div className={cx('people-needed', 'info')}>
                         <FontAwesomeIcon icon={faPerson} className={cx('info-icon')} />
-                        <span>Needed: {props.quantityUserNeeded} people</span>
+                        <span>Need: {props.quantityUserNeeded} people</span>
                     </div>
                     <div className={cx('category', 'info')}>
                         <FontAwesomeIcon icon={faLayerGroup} className={cx('info-icon')} />
@@ -147,10 +145,29 @@ const Post = (props) => {
                         <span>Status: {props.status}</span>
                     </div>
                     <Description describe={props.description} />
+
+                    {contact && (
+                        <>
+                            <div className={cx('phone-number', 'info')}>
+                                <FontAwesomeIcon icon={faPhoneVolume} className={cx('info-icon')} />
+                                <span>Phone number: {props.creator.phoneNumber}</span>
+                            </div>
+                            <div className={cx('email', 'info')}>
+                                <FontAwesomeIcon icon={faEnvelope} className={cx('info-icon')} />
+                                <span>Email: {props.creator.email}</span>
+                            </div>
+                        </>
+                    )}
                     <div className={cx('post-buttons')}>
-                        <Button outline large className={cx('contact-button')} onClick={handleContact}>
-                            Contact
-                        </Button>
+                        {contact ? (
+                            <Button outline large className={cx('contact-button')} onClick={handleContact}>
+                                Hide contact
+                            </Button>
+                        ) : (
+                            <Button outline large className={cx('contact-button')} onClick={handleContact}>
+                                Show contact
+                            </Button>
+                        )}
                         {!applied && (
                             <Button primary large className={cx('apply-button')} onClick={handleApply}>
                                 APPLY
@@ -161,10 +178,10 @@ const Post = (props) => {
                                 <Button
                                     primary
                                     large
-                                    className={cx('applied-announcement')}
+                                    className={cx('retract-button')}
                                     onClick={() => handleDeleteApply()}
                                 >
-                                    DELETE YOUR APLLY
+                                    Cancel application
                                 </Button>
                             </>
                         )}

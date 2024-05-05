@@ -2,12 +2,12 @@
     display: flex;
     flex-direction: column;
     border: 1px solid #ddd;
-    margin: 10px;
+    margin-top: 10px;
     padding: 15px;
     max-width: 100%;
     background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 .post-header {
@@ -110,20 +110,12 @@
     margin-bottom: 10px;
 }
 
-.applied-announcement {
-    background-color: brown;
-    color: #ffffff;
-    border-color: brown;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 100px;
-    padding: 9px 16px;
-    border-radius: 4px;
-    font-size: 1.6rem;
-    font-weight: 700;
-    font-family: var(--font-family);
-    border: 1px solid transparent;
-    user-select: none;
-    margin-left: 8px;
+.retract-button {
+    color: var(--white);
+    background-color: #990000;
+    border-color: #990000;
+    &:hover {
+        background-color: #570000;
+        border-color: #570000;
+    }
 }

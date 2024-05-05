@@ -1,5 +1,4 @@
 import useAuth from '~/helper/auth/hooks/useAuth';
-
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './ReceivedJob.module.scss';
@@ -9,14 +8,15 @@ import ReviewCreatorModal from '../ReviewCreatorModal';
 const cx = classNames.bind(styles);
 
 const ReceivedJob = () => {
-    const [jobExecutors, setJobExecutors] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
-    const { authFromContext } = useAuth(); // Lấy auth từ context
+    const { authFromContext } = useAuth();
     const [auth, setAuth] = useState(() => {
         const storedAuth = localStorage.getItem('auth');
         return storedAuth ? JSON.parse(storedAuth) : authFromContext;
     });
+    const [jobExecutors, setJobExecutors] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [selectedJobExecutor, setSelectedJobExecutor] = useState(null);
 
     useEffect(() => {
         if (!auth) {
@@ -44,7 +44,6 @@ const ReceivedJob = () => {
                         `/reviews?order=DESC&revieweeId=${jobEx.job.creator.id}&reviewerId=${auth.userId}&jobId=${jobEx.job.id}`,
                         'GET',
                     );
-                    console.log(reviewResponse.data.data);
                     return {
                         ...jobEx,
                         reviewed: reviewResponse.data.data.length > 0,
@@ -62,17 +61,10 @@ const ReceivedJob = () => {
         setCurrentPage(page);
     };
 
-    const handleChat = async () => {
-        try {
-        } catch (error) {}
-    };
-
-    const [selectedJobExecutor, setSelectedJobExecutor] = useState(null); // State for selected job
     const handleSelectJob = (job) => {
         setSelectedJobExecutor(job);
     };
 
-    // Close modal
     const handleCloseModal = () => {
         setSelectedJobExecutor(null);
     };
@@ -104,12 +96,7 @@ const ReceivedJob = () => {
                             <td>{jobEx.job.category}</td>
                             <td>{jobEx.job.status}</td>
                             <td>
-                                {jobEx.job.status !== 'Completed' && (
-                                    <button className={cx('button-chat')} onClick={() => handleChat(jobEx.id)}>
-                                        Chat
-                                    </button>
-                                )}
-                                {console.log(jobEx.reviewed)}
+                                {jobEx.job.status !== 'Completed' && <span>No-action</span>}
                                 {jobEx.job.status === 'Completed' && jobEx.reviewed && <span>Reviewed</span>}
                                 {jobEx.job.status === 'Completed' && !jobEx.reviewed && (
                                     <button
