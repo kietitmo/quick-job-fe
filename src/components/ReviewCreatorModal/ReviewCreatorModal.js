@@ -55,6 +55,7 @@ const ReviewCreatorModal = ({ jobEx, reviewType, onClose }) => {
             const response = await requestApi('/reviews', 'POST', formDataWithFile);
             console.log(response.data);
             onClose();
+            window.location.reload();
         } catch (error) {
             console.error('Error:', error);
         }
@@ -63,20 +64,20 @@ const ReviewCreatorModal = ({ jobEx, reviewType, onClose }) => {
     return (
         <div className={cx('modalBackground')} onClick={onClose}>
             <div className={cx('modalContent')} onClick={(e) => e.stopPropagation()}>
-                <h2>List of executors</h2>
+                <h2>Review job creator</h2>
                 {
                     <>
                         <div className={cx('jobEx')} key={jobEx.id}>
                             <p>
-                                <b>Executor:</b> {jobEx.executor.fullName}
+                                <b>Creator:</b> {jobEx.job.creator.fullName}
                             </p>
                             <p>
                                 <b>Email: </b>
-                                {jobEx.executor.email}
+                                {jobEx.job.creator.email}
                             </p>
                             <p>
                                 <b>PhoneNumber: </b>
-                                {jobEx.executor.phoneNumber}
+                                {jobEx.job.creator.phoneNumber}
                             </p>
                             <form className={cx('review-form')} onSubmit={handleSubmit}>
                                 <div>

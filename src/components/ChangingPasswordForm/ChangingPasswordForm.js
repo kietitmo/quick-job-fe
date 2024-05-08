@@ -75,7 +75,7 @@ const ChangingPasswordForm = () => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="password">newPassword:</label>
+                        <label htmlFor="password">New Password:</label>
                         <input
                             type="password"
                             id="password"

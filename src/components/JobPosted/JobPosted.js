@@ -6,6 +6,7 @@ import requestApi from '~/api/httpRequest';
 import ApplicationsModal from '../ApplicationsModal';
 import EditJobModal from '../EditJobModal';
 import ReviewExecutorModal from '../ReviewExecutorModal/ReviewExecutorModal';
+import JobDetail from '../JobDetail';
 
 const cx = classNames.bind(styles);
 
@@ -22,6 +23,8 @@ const JobPosted = () => {
     });
 
     const [selectedJob, setSelectedJob] = useState(null); // State for selected job
+    const [selectedJobDetail, setSelectedJobDetail] = useState(null); // State for selected job
+
     const [selectedJobReview, setSelectedJobReview] = useState(null);
 
     // Open modal and set selected job when clicking on Application count
@@ -34,6 +37,14 @@ const JobPosted = () => {
         setSelectedJob(null);
     };
 
+    const handleSelectJobDetail = (job) => {
+        setSelectedJobDetail(job);
+    };
+
+    // Close modal
+    const handleCloseModalDetail = () => {
+        setSelectedJobDetail(null);
+    };
     const handleSelectJobReview = (job) => {
         setSelectedJobReview(job);
     };
@@ -141,52 +152,50 @@ const JobPosted = () => {
 
     return (
         <div className={cx('job-posted')}>
-            <h3>Your posted jobs:</h3>
-            <table className={cx('job-table')}>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Quantity Needed</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>Salary/Fee</th>
-                        <th>Category</th>
-                        <th>Media count</th>
-                        <th>Status</th>
-                        <th>Applications</th>
-                        <th>Action</th>
-                        <th>TEST</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {jobs.map((job) => (
-                        <tr key={job.id}>
-                            <td>{job.title}</td>
-                            <td>{job.description}</td>
-                            <td>{job.quantityUserNeeded}</td>
-                            <td>{new Date(job.startTime).toLocaleString()}</td>
-                            <td>{new Date(job.endTime).toLocaleString()}</td>
-                            <td>{job.salaryOrFee}</td>
-                            <td>{job.category}</td>
-                            <td>{job.images.length + job.videos.length}</td>
-                            <td>{job.status}</td>
-                            <td>
-                                {job.status === 'Searching' ? (
-                                    <button
-                                        className={cx('button-application-count')}
-                                        onClick={() => handleSelectJob(job)}
-                                    >
-                                        {job.applications.length}
-                                    </button>
-                                ) : (
-                                    job.applications.length
-                                )}
-                            </td>
-                            <td>
+            {jobs.length > 0 ? (
+                <div className={cx('job-table')}>
+                    {jobs.map((job, index) => (
+                        <div className={cx('job')} key={job.id}>
+                            <div className={cx('job-info-container')}>
+                                <div className={cx('job-info')}>
+                                    <b>Title: </b> {job.title}
+                                </div>
+                                <div className={cx('job-info')}>
+                                    <b>Status: </b>
+                                    {job.status}
+                                </div>
+
+                                <div className={cx('buttons-info')}>
+                                    <div>
+                                        {job.status === 'Searching' ? (
+                                            <button
+                                                className={cx('button-application-count', 'button')}
+                                                onClick={() => handleSelectJob(job)}
+                                            >
+                                                Applicants: {job.applications.length}
+                                            </button>
+                                        ) : (
+                                            <div className={cx('job-info')}>
+                                                <b>Applicants: </b>
+                                                {job.applications.length}
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div>
+                                        <button
+                                            className={cx('button-job-detail', 'button')}
+                                            onClick={() => handleSelectJobDetail(job)}
+                                        >
+                                            Detail
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className={cx('buttons-line')}>
                                 {job.status === 'Searching' && (
                                     <button
-                                        className={cx('button-start')}
+                                        className={cx('button-start', 'button')}
                                         onClick={() => handleUpdateJobStatusInProgress(job.id)}
                                     >
                                         Start
@@ -194,17 +203,23 @@ const JobPosted = () => {
                                 )}
                                 {job.status === 'Searching' && (
                                     <>
-                                        <button className={cx('button-edit')} onClick={() => handleOpenEditModal(job)}>
+                                        <button
+                                            className={cx('button-edit', 'button')}
+                                            onClick={() => handleOpenEditModal(job)}
+                                        >
                                             Edit
                                         </button>
-                                        <button className={cx('button-delete')} onClick={() => handleDeleteJob(job.id)}>
+                                        <button
+                                            className={cx('button-delete', 'button')}
+                                            onClick={() => handleDeleteJob(job.id)}
+                                        >
                                             Delete
                                         </button>
                                     </>
                                 )}
                                 {job.status === 'Progress' && (
                                     <button
-                                        className={cx('button-complete')}
+                                        className={cx('button-complete', 'button')}
                                         onClick={() => {
                                             handleUpdateJobStatusCompleted(job.id);
                                             handleSelectJobReview(job);
@@ -213,9 +228,9 @@ const JobPosted = () => {
                                         Complete
                                     </button>
                                 )}
-                                {job.status === 'Completed' && 'COMPLETED'}
-                            </td>
-                            <td>
+                                {job.status === 'Completed' && <div className={cx('completed')}> JOB IS COMPLETED</div>}
+                            </div>
+                            {/* <div className={cx('button-test')}>
                                 <button
                                     className={cx('button-start')}
                                     onClick={() => handleUpdateJobStatusSearching(job.id)}
@@ -241,11 +256,13 @@ const JobPosted = () => {
                                 <button className={cx('button-delete')} onClick={() => handleDeleteJob(job.id)}>
                                     Delete
                                 </button>
-                            </td>
-                        </tr>
+                            </div> */}
+                        </div>
                     ))}
-                </tbody>
-            </table>
+                </div>
+            ) : (
+                <h1>You dont have any job!</h1>
+            )}
             <div className={cx('pagination')}>
                 {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
                     <button key={page} onClick={() => handlePageChange(page)}>
@@ -262,6 +279,9 @@ const JobPosted = () => {
                     reviewType={'CREATOR_TO_EXECUTOR'}
                     onClose={handleCloseModalReivew}
                 />
+            )}
+            {selectedJobDetail && (
+                <JobDetail key={selectedJobDetail.id} props={selectedJobDetail} onClose={handleCloseModalDetail} />
             )}
         </div>
     );

@@ -1,87 +1,42 @@
-// JobPosted.module.scss
-
-.job-posted {
-    h1 {
-        margin: 10px;
-    }
-
-    h3 {
-        text-align: start;
-        background-color: var(--main-color-most-dark);
-        color: #fff;
-        padding: 5px;
-    }
-
-    .job-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-
-        th,
-        td {
-            border: 1px solid #ccc;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        button {
-            padding: 10px;
-            border-radius: 10px;
-            margin: 2px;
-            cursor: pointer;
-            width: 100%;
-            color: #fff;
-        }
-
-        button:hover {
-            opacity: 90%;
-        }
-
-        // .button-edit {
-        //     background-color: #004c5f;
-        // }
-
-        // .button-start {
-        //     background-color: var(--primary);
-        // }
-
-        .button-delete {
-            background-color: #b32a00;
-        }
-
-        .button-chat {
-            background-color: rgb(0, 87, 128);
-        }
-
-        // .button-application-count {
-        //     background-color: #440039;
-        // }
-    }
-
-    .pagination {
+.applications-applied {
+    .applications {
         display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         justify-content: center;
-        margin-top: 20px;
+        .application {
+            margin: 5px;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f5f5f5;
+            width: 47%;
 
-        button {
-            margin: 0 5px;
-            padding: 8px 12px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-
-            &:hover {
-                background-color: #0056b3;
+            .button-delete {
+                margin-top: 10px;
+                width: 100%;
+                background-color: #b32a00;
             }
+        }
+    }
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    button {
+        margin: 0 5px;
+        padding: 8px 12px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #0056b3;
         }
     }
 }

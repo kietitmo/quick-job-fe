@@ -101,25 +101,41 @@ const ApplicationsModal = ({ job, onClose }) => {
                 <h2>Applications Details</h2>
                 {applications.map((application, index) => (
                     <div className={cx('application')} key={application.id}>
-                        <p>Status: {application.status}</p>
-                        <p>Applicant: {application.applicant.fullName}</p>
-                        <p>Email: {application.applicant.email}</p>
-                        <p>PhoneNumber: {application.applicant.phoneNumber}</p>
-                        {
-                            <button
-                                className={cx('button-show-review')}
-                                onClick={() => handleSelectApp(application.applicant.id)}
-                            >
-                                Show reviews
-                            </button>
-                        }
-                        {chosenApplications[index] ? (
-                            <button onClick={() => handleDeleteChoose(application.jobExecutorId)}>Delete Choose</button>
+                        {application.applicant.avatarUrl ? (
+                            <img
+                                className={cx('avatar')}
+                                src={process.env.REACT_APP_BASE_SERVER_URL + application.applicant.avatarUrl}
+                                alt="Avatar"
+                            />
                         ) : (
-                            <button onClick={() => handleChooseApplication(application.id, application.applicant.id)}>
-                                Choose
-                            </button>
+                            <img className={cx('avatar')} src={'/photos/default-avatar.png'} alt="Avatar" />
                         )}
+
+                        <div className={cx('applicant-infor')}>
+                            <p>Status: {application.status}</p>
+                            <p>Applicant: {application.applicant.fullName}</p>
+                            <p>Email: {application.applicant.email}</p>
+                            <p>PhoneNumber: {application.applicant.phoneNumber}</p>
+                            {
+                                <button
+                                    className={cx('button-show-review')}
+                                    onClick={() => handleSelectApp(application.applicant.id)}
+                                >
+                                    Show reviews
+                                </button>
+                            }
+                            {chosenApplications[index] ? (
+                                <button onClick={() => handleDeleteChoose(application.jobExecutorId)}>
+                                    Delete Choose
+                                </button>
+                            ) : (
+                                <button
+                                    onClick={() => handleChooseApplication(application.id, application.applicant.id)}
+                                >
+                                    Choose
+                                </button>
+                            )}
+                        </div>
                     </div>
                 ))}
                 <button className={cx('button-close')} onClick={onClose}>

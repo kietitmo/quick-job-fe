@@ -71,31 +71,36 @@ const ReceivedJob = () => {
 
     return (
         <div className={cx('job-received')}>
-            <h3>Your received jobs:</h3>
-            <table className={cx('job-table')}>
-                <thead>
-                    <tr>
-                        <th>Job Title</th>
-                        <th>Need</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>Salary/Fee</th>
-                        <th>Category</th>
-                        <th>Job Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
+            {jobExecutors.length > 0 ? (
+                <div className={cx('jobs')}>
                     {jobExecutors.map((jobEx) => (
-                        <tr key={jobEx.id}>
-                            <td>{jobEx.job.title}</td>
-                            <td>{jobEx.job.quantityUserNeeded}</td>
-                            <td>{new Date(jobEx.job.startTime).toLocaleString()}</td>
-                            <td>{new Date(jobEx.job.endTime).toLocaleString()}</td>
-                            <td>{jobEx.job.salaryOrFee}</td>
-                            <td>{jobEx.job.category}</td>
-                            <td>{jobEx.job.status}</td>
-                            <td>
+                        <div className={cx('job')} key={jobEx.id}>
+                            <div>
+                                <b>Title: </b>
+                                {jobEx.job.title}
+                            </div>
+                            <div>
+                                {' '}
+                                <b>Start at: </b>
+                                {new Date(jobEx.job.startTime).toLocaleString()}
+                            </div>
+                            <div>
+                                {' '}
+                                <b>Fee: </b>
+                                {jobEx.job.salaryOrFee}
+                            </div>
+                            <div>
+                                {' '}
+                                <b>Category: </b>
+                                {jobEx.job.category}
+                            </div>
+                            <div>
+                                {' '}
+                                <b>Status: </b>
+                                {jobEx.job.status}
+                            </div>
+                            <div>
+                                <b>Actions: </b>
                                 {jobEx.job.status !== 'Completed' && <span>No-action</span>}
                                 {jobEx.job.status === 'Completed' && jobEx.reviewed && <span>Reviewed</span>}
                                 {jobEx.job.status === 'Completed' && !jobEx.reviewed && (
@@ -103,14 +108,16 @@ const ReceivedJob = () => {
                                         className={cx('button-Give-a-feedbaack')}
                                         onClick={() => handleSelectJob(jobEx)}
                                     >
-                                        review
+                                        Review
                                     </button>
                                 )}
-                            </td>
-                        </tr>
+                            </div>
+                        </div>
                     ))}
-                </tbody>
-            </table>
+                </div>
+            ) : (
+                <h1>You dont have any job!</h1>
+            )}
             <div className={cx('pagination')}>
                 {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
                     <button key={page} onClick={() => handlePageChange(page)}>

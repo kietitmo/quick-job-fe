@@ -1,8 +1,13 @@
 .create-job-form {
+    padding: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 2rem;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+
     div {
         width: calc(50% - 10px); // Đặt chiều rộng của mỗi trường là 50% và trừ đi khoảng cách giữa chúng (10px)
         margin-bottom: 10px;

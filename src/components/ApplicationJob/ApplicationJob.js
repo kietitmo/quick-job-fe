@@ -59,38 +59,36 @@ const ApplicationJob = () => {
     };
 
     return (
-        <div className={cx('job-posted')}>
-            <h3>Your applied jobs:</h3>
-            <table className={cx('job-table')}>
-                <thead>
-                    <tr>
-                        <th>Application Id</th>
-                        <th>Created At</th>
-                        <th>Application Status</th>
-                        <th>Job Title</th>
-                        <th>Need</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>Salary/Fee</th>
-                        <th>Category</th>
-                        <th>Job Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <div className={cx('applications-applied')}>
+            {applications.length > 0 ? (
+                <div className={cx('applications')}>
                     {applications.map((application) => (
-                        <tr key={application.id}>
-                            <td>{application.id}</td>
-                            <td>{new Date(application.createdAt).toLocaleString()}</td>
-                            <td>{application.status}</td>
-                            <td>{application.job.title}</td>
-                            <td>{application.job.quantityUserNeeded}</td>
-                            <td>{new Date(application.job.startTime).toLocaleString()}</td>
-                            <td>{new Date(application.job.endTime).toLocaleString()}</td>
-                            <td>{application.job.salaryOrFee}</td>
-                            <td>{application.job.category}</td>
-                            <td>{application.job.status}</td>
-                            <td>
+                        <div className={cx('application')} key={application.id}>
+                            <div>
+                                <b>Title: </b>
+                                {application.job.title}
+                            </div>
+                            <div>
+                                <b>Status: </b>
+                                {application.status}
+                            </div>
+
+                            <div>
+                                <b>Start at: </b>
+                                {new Date(application.job.startTime).toLocaleString()}
+                            </div>
+                            <div>
+                                <b>Fee: </b>
+                                {application.job.salaryOrFee}
+                            </div>
+                            <div>
+                                <b>Category: </b>
+                                {application.job.category}
+                            </div>
+                            <div>
+                                <b>Applied at: </b> {new Date(application.createdAt).toLocaleString()}
+                            </div>
+                            <div>
                                 {application.status !== 'COMPLETED' ? (
                                     <button
                                         className={cx('button-delete')}
@@ -101,11 +99,14 @@ const ApplicationJob = () => {
                                 ) : (
                                     'COMPLETED'
                                 )}
-                            </td>
-                        </tr>
+                            </div>
+                        </div>
                     ))}
-                </tbody>
-            </table>
+                </div>
+            ) : (
+                <h1>You dont have any job!</h1>
+            )}
+
             <div className={cx('pagination')}>
                 {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
                     <button key={page} onClick={() => handlePageChange(page)}>

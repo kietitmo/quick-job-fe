@@ -3,6 +3,10 @@ import Post from '~/components/Post';
 import React, { useState, useEffect } from 'react';
 import requestApi from '~/api/httpRequest';
 import Pagination from '~/components/Layouts/components/Pagination'; // Import component Pagination
+import classNames from 'classnames/bind';
+import styles from './Home.module.scss';
+
+const cx = classNames.bind(styles);
 
 function Home() {
     const [posts, setPosts] = useState([]);
@@ -37,12 +41,21 @@ function Home() {
     return (
         <div>
             <Search onSearch={handleSearchResults} />
-            <div className="app">
-                {posts.map((post) => (
-                    <Post key={post.id} {...post} />
-                ))}
+            <div className={cx('app')}>
+                {posts.length > 0 ? (
+                    <div>
+                        {posts.map((post) => (
+                            <Post key={post.id} {...post} />
+                        ))}{' '}
+                        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+                    </div>
+                ) : (
+                    <>
+                        <img className={cx('loading')} src={'/gif/loading.gif'} alt="loading" />
+                        <h2> Job not available</h2>
+                    </>
+                )}
             </div>
-            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
         </div>
     );
 }

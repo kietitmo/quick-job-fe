@@ -9,8 +9,6 @@
     align-items: center;
     justify-content: center;
     z-index: 999; /* Đảm bảo modal hiển thị trên cùng */
-    // visibility: hidden;
-    // opacity: 0;
     transition: visibility 0s, opacity 0.3s ease; /* Hiệu ứng transition khi hiển thị */
 
     &.active {
@@ -30,10 +28,12 @@
 }
 
 .application {
-    padding: 5px;
+    padding: 10px;
     margin: 5px;
     border-radius: 5px;
-    background-color: rgb(184, 184, 184);
+    background-color: rgb(228, 228, 228);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
     button {
         border-radius: 5px;
         padding: 10px;
@@ -44,6 +44,13 @@
 
     button:hover {
         opacity: 80%;
+    }
+    .avatar {
+        margin: 5px;
+        margin-right: 20px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
     }
 }
 

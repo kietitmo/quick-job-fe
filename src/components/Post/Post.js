@@ -147,7 +147,7 @@ const Post = (props) => {
                     <Description describe={props.description} />
 
                     {contact && (
-                        <>
+                        <div className={cx('contact', 'info')}>
                             <div className={cx('phone-number', 'info')}>
                                 <FontAwesomeIcon icon={faPhoneVolume} className={cx('info-icon')} />
                                 <span>Phone number: {props.creator.phoneNumber}</span>
@@ -156,7 +156,7 @@ const Post = (props) => {
                                 <FontAwesomeIcon icon={faEnvelope} className={cx('info-icon')} />
                                 <span>Email: {props.creator.email}</span>
                             </div>
-                        </>
+                        </div>
                     )}
                     <div className={cx('post-buttons')}>
                         {contact ? (
@@ -188,8 +188,8 @@ const Post = (props) => {
                     </div>
                 </div>
                 <div className={cx('post-media')}>
-                    {props.images && props.images.length > 0 ? (
-                        <ImageSlider mediaItems={props.images} />
+                    {props.media && props.media.length > 0 ? (
+                        <ImageSlider mediaItems={props.media.filter((x) => x.mediaType === 'IMAGE')} />
                     ) : (
                         <img className={cx('no_image')} src="/photos/no_image.jpg" alt="nothing is privided" />
                     )}

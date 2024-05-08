@@ -1,13 +1,44 @@
+.modalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Một lớp mờ đen khi modal hiển thị */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999; /* Đảm bảo modal hiển thị trên cùng */
+    // visibility: hidden;
+    // opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease; /* Hiệu ứng transition khi hiển thị */
+
+    &.active {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
 .post {
+    position: fixed;
+    top: 20%;
+    left: 20%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     border: 1px solid #ddd;
     margin-top: 10px;
     padding: 30px;
-    width: 100%;
     background-color: #ffffff;
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+
+    .close-button {
+        background-color: red;
+        &:hover {
+            background-color: brown;
+        }
+    }
 }
 
 .post-header {
@@ -87,10 +118,6 @@
     }
 }
 
-.post-media {
-    width: 50%;
-}
-
 .address {
     font-weight: bold;
 }
@@ -101,32 +128,4 @@
     padding: 10px;
     max-width: 100%;
     border-radius: 20px;
-}
-
-.post-buttons {
-    display: flex;
-    margin-top: auto;
-    justify-content: center;
-    margin-bottom: 10px;
-}
-
-.retract-button {
-    color: var(--white);
-    background-color: #990000;
-    border-color: #990000;
-    &:hover {
-        background-color: #570000;
-        border-color: #570000;
-    }
-}
-
-.contact {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: rgb(255, 255, 255);
-    padding: 15px;
-    border-radius: 20px;
-    border: 1px solid #ddd;
 }

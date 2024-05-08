@@ -1,10 +1,12 @@
 import classNames from 'classnames/bind';
 import styles from './LoginForm.module.scss';
 import Button from '../Button';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import requestApi from '~/api/httpRequest';
 import useAuth from '~/helper/auth/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+
 const cx = classNames.bind(styles);
 
 function LoginForm() {
@@ -20,39 +22,34 @@ function LoginForm() {
             [target.name]: target.value,
         });
     };
-    const handleLoginGoogle = async () => {
-        requestApi('/auth/google/login', 'GET')
-            .then(async (response) => {
-                const data = response.data;
-                const userId = data.user.id;
-                const role = data.user.role;
-                const username = data.user.username;
-                const fullName = data.user.fullName;
-                const email = data.user.email;
-                const avatarUrl = data.user.avatarUrl;
-                const tokens = data.tokens;
-                console.log('Login successful:', data);
-                await setAuth({ userId, username, fullName, email, role, avatarUrl, tokens });
-                localStorage.setItem(
-                    'auth',
-                    JSON.stringify({ userId, username, fullName, email, role, avatarUrl, tokens }),
-                );
-                navigate('/');
-            })
-            .catch((err) => {
-                console.log(err);
-                if (typeof err.response !== 'undefined') {
-                    if (err.response.status === 401) {
-                        window.alert('Wrong password or username!');
-                    } else if (err.response.status !== 201) {
-                        window.alert(err.response.data.message);
-                    }
-                } else {
-                    window.alert('Server is down. Please try again!');
-                }
-                console.log(err);
-            });
+
+    const handleLoginGoogle = () => {
+        window.location.href = 'http://localhost:3333/auth/google/login';
     };
+
+    useEffect(() => {
+        const auth = Cookies.get('auth');
+        if (auth) {
+            const data = JSON.parse(auth);
+
+            const userId = data.user.id;
+            const role = data.user.role;
+            const username = data.user.username;
+            const fullName = data.user.fullName;
+            const email = data.user.email;
+            const avatarUrl = data.user.avatarUrl;
+            const tokens = data.tokens;
+            console.log('Login successful:', data);
+            setAuth({ userId, username, fullName, email, role, avatarUrl, tokens });
+            localStorage.setItem(
+                'auth',
+                JSON.stringify({ userId, username, fullName, email, role, avatarUrl, tokens }),
+            );
+            Cookies.remove('auth');
+            navigate('/');
+            window.location.reload();
+        }
+    }, [navigate, setAuth]);
 
     const handleSubmit = async (event) => {
         event.preventDefault(); // Prevent default form submission behavior

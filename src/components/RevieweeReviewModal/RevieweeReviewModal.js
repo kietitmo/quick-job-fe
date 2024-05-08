@@ -70,25 +70,32 @@ const RevieweeReviewModal = ({ userId, reviewType, onClose }) => {
                 </p>
                 {reviews.map((review) => (
                     <div className={cx('review')} key={review.id}>
-                        <p>
-                            <b>Reviewer: </b>
-                            {review.reviewer.email}
-                        </p>
-                        <p>
-                            <b>created at: </b>
-                            {new Date(review.createdAt).toLocaleString()}
-                        </p>
-                        <p>
-                            <b>Rating: </b>
-                            {review.rating}
-                        </p>
-                        <p>
-                            <b>Description: </b>
-                            {review.content}
-                        </p>
-                        {review.showMedia && ( // Chỉ hiển thị nút "Show Media" nếu có hình ảnh hoặc video
-                            <button onClick={() => toggleMedia(review.id)}>Show Media</button>
-                        )}
+                        <img
+                            className={cx('avatar')}
+                            src={process.env.REACT_APP_BASE_SERVER_URL + review.reviewer.avatarUrl}
+                            alt="Avatar"
+                        />
+                        <div className={cx('reviewer-infor')}>
+                            <p>
+                                <b>Reviewer: </b>
+                                {review.reviewer.email}
+                            </p>
+                            <p>
+                                <b>created at: </b>
+                                {new Date(review.createdAt).toLocaleString()}
+                            </p>
+                            <p>
+                                <b>Rating: </b>
+                                {review.rating}
+                            </p>
+                            <p>
+                                <b>Description: </b>
+                                {review.content}
+                            </p>
+                            {review.showMedia && ( // Chỉ hiển thị nút "Show Media" nếu có hình ảnh hoặc video
+                                <button onClick={() => toggleMedia(review.id)}>Show Media</button>
+                            )}
+                        </div>
                     </div>
                 ))}
                 <button className={cx('close-button')} onClick={onClose}>
