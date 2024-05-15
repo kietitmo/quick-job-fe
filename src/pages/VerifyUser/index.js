@@ -1,4 +1,4 @@
-import VerifyUserForm from '~/components/VerifyUserForm/VerifyUserForm';
+import VerifyUserForm from '~/components/auth/VerifyUserForm/VerifyUserForm';
 
 function VerifyUser() {
     return <VerifyUserForm />;

@@ -10,7 +10,6 @@ import VerifyUser from '~/pages/VerifyUser';
 import ResetPassword from '~/pages/ResetPassword';
 import ForbiddenPage from '~/pages/ForbiddenPage';
 import Dashboard from '~/pages/Dashboard';
-import SearchResult from '~/pages/SearchResult';
 import NoHeader from '~/components/Layouts/NoHeader';
 import ChangingPasssword from '~/pages/ChangingPassword';
 const publicRoutes = [
@@ -43,11 +42,6 @@ const publicRoutes = [
         path: config.routes.unauthorized,
         component: ForbiddenPage,
         layout: NoHeader,
-    },
-    {
-        path: config.routes.searchResult,
-        component: SearchResult,
-        layout: HeaderOnly,
     },
 ];
 const privateRoutes = [

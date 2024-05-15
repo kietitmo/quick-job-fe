@@ -63,7 +63,6 @@ function requestApi(endpoint, method, body, responseType = 'json') {
     );
 
     if (body instanceof FormData) {
-        // Kiểm tra nếu body là FormData (có file)
         return instance.request({
             method: method,
             url: `${endpoint}`,
@@ -71,7 +70,6 @@ function requestApi(endpoint, method, body, responseType = 'json') {
             responseType: responseType,
         });
     } else {
-        // Nếu không có file, sử dụng dữ liệu truyền vào trực tiếp
         return instance.request({
             method: method,
             url: `${endpoint}`,

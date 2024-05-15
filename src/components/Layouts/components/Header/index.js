@@ -9,8 +9,8 @@ import {
     faUser,
     faTableColumns,
 } from '@fortawesome/free-solid-svg-icons';
-import Button from '../../../Button';
-import Menu from '~/components/Popper/Menu';
+import Button from '~/components/general/Button';
+import Menu from '~/components/general/Popper/Menu';
 import config from '~/config';
 import routesConfig from '~/config/routes';
 import requestApi from '~/api/httpRequest';

@@ -1,4 +1,4 @@
-import ChangingPasswordForm from '~/components/ChangingPasswordForm/';
+import ChangingPasswordForm from '~/components/auth/ChangingPasswordForm/';
 
 function ChangingPasssword() {
     return <ChangingPasswordForm />;

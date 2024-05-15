@@ -1,4 +1,4 @@
-import Forbidden from '~/components/Forbidden/Forbidden';
+import Forbidden from '~/components/auth/Forbidden/Forbidden';
 
 function ForbiddenPage() {
     return (

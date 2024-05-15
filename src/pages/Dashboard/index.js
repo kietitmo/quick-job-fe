@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Dashboard.module.scss';
-import JobPosted from '~/components/JobPosted';
-import ApplicationJob from '~/components/ApplicationJob';
-import ReceivedJob from '~/components/ReceivedJob';
+import JobPosted from '~/components/job/JobPosted';
+import ApplicationJob from '~/components/application/ApplicationJob';
+import ReceivedJob from '~/components/job/ReceivedJob';
 
 const cx = classNames.bind(styles);
 

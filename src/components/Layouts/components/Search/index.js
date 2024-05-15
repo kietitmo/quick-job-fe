@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
-import Button from '~/components/Button';
+import Button from '~/components/general/Button';
 import { useState, useEffect } from 'react';
 import requestApi from '~/api/httpRequest';
 

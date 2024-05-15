@@ -4,12 +4,10 @@ const routes = {
     register: '/register',
     profile: '/profile',
     createJob: '/create-job',
-    logout: '/logout',
     verifyUser: '/verify-user',
     resetPassword: '/reset-password',
     unauthorized: '/unauthorized',
     dashboard: '/dashboard',
-    searchResult: '/searchResult',
     chat: '/chat',
     changingPassword: '/changingPassword',
 };
