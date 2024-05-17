@@ -41,12 +41,12 @@ function Home() {
             <Search onSearch={handleSearchResults} />
             <div className={cx('app')}>
                 {posts.length > 0 ? (
-                    <div>
+                    <>
                         {posts.map((post) => (
                             <Post key={post.id} {...post} />
                         ))}{' '}
                         <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
-                    </div>
+                    </>
                 ) : (
                     <>
                         <img className={cx('loading')} src={'/gif/loading.gif'} alt="loading" />
